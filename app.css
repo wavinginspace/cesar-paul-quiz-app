@@ -6,3 +6,30 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+
+body {
+	font-size: 24px;
+}
+
+header,
+section {
+	display: flex;
+	justify-content: center;
+}
+
+section {
+	align-items: center;
+	flex-direction: column;
+}
+
+header {
+	margin-bottom: 100px;
+}
+
+section h2 {
+	display: block;
+}
+
+button {
+	display: block;
+}
