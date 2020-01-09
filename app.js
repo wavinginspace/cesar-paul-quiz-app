@@ -34,28 +34,78 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: ',
+      question: 'How do you say Cat in Spanish '
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'Gato',
+        'Leon',
+        'Raton',
+        'Perro'
+        'Pajaro'
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'Gato'
+      questionNumber: 1,
+      score: 0
     },
     {
-      question: 'What is the current year?',
+      question: 'What is a Biblioteca?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        'Gas Station',
+        'Hardware Store',
+        'Library',
+        'Police Station',
+        'School'
       ],
-      correctAnswer: '2019'
+      correctAnswer: 'Library'
+      questionNumber: 2,
+      score: 0
     }
   ],
-  questionNumber: 0,
+  [
+  {
+    question: 'Pablo toca la guitara. What instrument does Pablo play?',
+    answers: [
+      'Piano',
+      'Trumpet',
+      'Drums',
+      'Bass',
+      'Guitar'
+    ],
+    correctAnswer: 'Guitar'
+    questionNumber: 3,
+    score: 0
+  }
+],
+
+{
+  question: 'What is the capital of Mexico?',
+  answers: [
+    'Mexico City',
+    'Cancun',
+    'Monterrey',
+    'Puebla',
+    'Tijuana'
+  ],
+  correctAnswer: 'Mexico City'
+  questionNumber: 4,
   score: 0
+}
+],
+[
+{
+  question: 'When is Mexican Independance Day?',
+  answers: [
+    'May 5th',
+    'September 16th',
+    'July 4th',
+    'Febuary 12th',
+    'June 6th'
+  ],
+  correctAnswer: 'September 16th'
+  questionNumber: 5,
+  score: 0
+}
+],
+  
 };
 
 /**
