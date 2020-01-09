@@ -105,7 +105,7 @@ $(document).ready(function() {
         <p> Question 1/5</p>
         <p>How do you say cat in Spanish?</p> 
   
-        <form action="">
+        <form class="questionform" action="">
           <label for="correct">Gato</label>
           <input type="radio" id="correct" name="choice" value="gato"> <br>
           <label for="wrong1">Leon</label>
@@ -116,7 +116,7 @@ $(document).ready(function() {
           <input type="radio" id="wrong3" name="choice" value="perro"> <br>
           <label for="wrong4">Pajaro</label>
           <input type="radio" id="wrong4" name="choice" value="pajaro"> <br>
-          <button type="submit">Submit Answer</button>
+          <button class="submitanswerbutton" type="submit">Submit Answer</button>
         
         </form>
   
@@ -124,6 +124,42 @@ $(document).ready(function() {
     });
   }
 
+  function renderCorrectAnswer() {
+    $('main').html(`<section>
+      
+      <p> Question 1/5</p>
+
+      <p>How do you say cat in Spanish?</p> 
+
+      <form action="">
+        <label for="correct">Gato</label>
+        <input type="radio" id="correct" name="choice" value="gato"> <br>
+        <label for="wrong1">Leon</label>
+        <input type="radio" id="wrong1" name="choice" value="leon"> <br>
+        <label for="wrong2">Raton</label>
+        <input type="radio" id="wrong2" name="choice" value="raton"> <br>
+        <label for="wrong3">Perro</label>
+        <input type="radio" id="wrong3" name="choice" value="perro"> <br>
+        <label for="wrong4">Pajaro</label>
+        <input type="radio" id="wrong4" name="choice" value="pajaro"> <br>
+        <button type="submit">Submit Answer</button>
+      
+      </form>
+
+      <p>You are correct!</p>
+      <p>Score: 0</p>
+      <button>next</button>
+
+    </section>`);
+  }
+
+  function handleSubmitAnswerButton(e) {
+    $('.questionform').on('submit', function() {
+      e.preventDefault();
+      console.log('I was submitted');
+      // renderCorrectAnswer();
+    });
+  }
 
   function generateAnswersList(answers) {
     //this function will populate the question template form with values from the
@@ -137,10 +173,10 @@ $(document).ready(function() {
   function buildQuizGame() {
     renderWelcomePage();
     handleStartGameClick();
+    handleSubmitAnswerButton();
   }
 
   buildQuizGame();
-
 
   // 1. The starting screen should have a button that users can click to start the quiz.
 
