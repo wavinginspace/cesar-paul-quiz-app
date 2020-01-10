@@ -15,6 +15,8 @@
 9. Users should be able to start a new quiz. */
 
 
+
+
 $(document).ready(function() {
 
 
@@ -89,13 +91,14 @@ $(document).ready(function() {
     ], 
   };
 
-  function renderWelcomePage() {
-    //this function will render the welcome page view
+  (function renderWelcomePage() {
+  //this function will render the welcome page view
     $('main').html(`<section>
       <h2>Do you want to play a game?</h2>
         <button class="startbutton">Yes!</button>
     </section>`);
-  }
+  })();
+
 
   function handleStartGameClick() {
     $('.startbutton').on('click', function() {
@@ -103,9 +106,9 @@ $(document).ready(function() {
       $('main').html(`<section>
       
         <p> Question 1/5</p>
-        <p>How do you say cat in Spanish?</p> 
+        <p class="question">How do you say cat in Spanish?</p> 
   
-        <form class="questionform" action="">
+        <form class="questionform">
           <label for="correct">Gato</label>
           <input type="radio" id="correct" name="choice" value="gato"> <br>
           <label for="wrong1">Leon</label>
@@ -124,7 +127,17 @@ $(document).ready(function() {
     });
   }
 
+  function handleSubmitAnswerButton() {
+    $('.submitanswerbutton').on('click', function(event) {
+      event.preventDefault();
+      console.log('I was submitted');
+      renderCorrectAnswer();
+    });
+  }
+ 
+
   function renderCorrectAnswer() {
+    // e.preventDefault();
     $('main').html(`<section>
       
       <p> Question 1/5</p>
@@ -143,7 +156,6 @@ $(document).ready(function() {
         <label for="wrong4">Pajaro</label>
         <input type="radio" id="wrong4" name="choice" value="pajaro"> <br>
         <button type="submit">Submit Answer</button>
-      
       </form>
 
       <p>You are correct!</p>
@@ -152,37 +164,39 @@ $(document).ready(function() {
 
     </section>`);
   }
+   
 
-  function handleSubmitAnswerButton(e) {
-    $('.questionform').on('submit', function() {
-      e.preventDefault();
-      console.log('I was submitted');
-      // renderCorrectAnswer();
+  // function generateAnswersList(answers) {
+  // //this function will populate the question template form with values from the
+  // // store array. 
+  // }
+  
+  // function renderQuestionText() {
+  // //this function will render the question text, pulling values from the store array
+  // }
+
+  function testClick() {
+    $('.questionform').on('click', '.submitbutton', function(event) {
+      event.preventDefault();
+      console.log('test');
     });
   }
 
-  function generateAnswersList(answers) {
-    //this function will populate the question template form with values from the
-    // store array. 
-  }
-  
-  function renderQuestionText() {
-    //this function will render the question text, pulling values from the store array
-  }
-
   function buildQuizGame() {
-    renderWelcomePage();
     handleStartGameClick();
     handleSubmitAnswerButton();
+    testClick();
   }
 
   buildQuizGame();
 
-  // 1. The starting screen should have a button that users can click to start the quiz.
-
-
-
 });
+  
+
+// 1. The starting screen should have a button that users can click to start the quiz.
+
+
+
 
 /**
  *
