@@ -135,7 +135,6 @@ $(document).ready(function() {
     });
   }
  
-
   function renderCorrectAnswer() {
     // e.preventDefault();
     $('main').html(`<section>
