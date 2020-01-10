@@ -130,10 +130,9 @@ $(document).ready(function() {
           console.log('I was submitted');
           let selected = $('input[id=correct]');
           console.log(selected);
-          if ($('input[id=correct]:checked').val() === store.questions[0].correctAnswer) {
+          if ($('input:checked').val() === store.questions[0].correctAnswer) {
             renderCorrectAnswer();
           }
-    
         });
       }
       handleSubmitAnswerButton();
