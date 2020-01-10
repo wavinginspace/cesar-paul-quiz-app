@@ -102,20 +102,22 @@ $(document).ready(function() {
     if (store.lastQuestionIncorrect === false) {
       let correctAnswerHtml = generateQuestionHtml();
       $('main').html(correctAnswerHtml + 
-    
-          `<p>You are correct!</p>
-          <p>Score: ${store.score}</p>
-          <button class="nextbutton">next</button>
+
+          `<p class="correctAnswer">You are Correct!</p>
+          <p class="correctScore">Score: ${store.score}</p>
+          <button class="nextbutton">Next</button>
     
         </section>`);
     } else if (store.lastQuestionIncorrect === true) {
       let correctAnswerHtml = generateQuestionHtml();
 
-      $('main').html(correctAnswerHtml + 
-    
-          `<p>You are incorrect!</p>
-          <p>Score: ${store.score}</p>
-          <button class="nextbutton">next</button>
+      $('main').html(correctAnswerHtml +
+
+          `<p class="incorrectAnswer">You are incorrect!</p>
+          <p class="incorrectScore">Score: ${store.score}</p>
+          <button class="nextbutton">Next</button>
+
+          
     
         </section>`);
     }
@@ -169,7 +171,7 @@ $(document).ready(function() {
     let currentQuestion = store.questions[store.questionCounter];
     let questionHtml = `<section>
       
-    <p> Question ${questionNumber}/5</p>
+    <p class="questionNumber"> Question ${questionNumber}/5</p>
     <p class="question">${currentQuestion.question}</p> 
 
     <form class="questionform">
@@ -216,7 +218,6 @@ $(document).ready(function() {
         // renderCorrectAnswer();
       } else {
         console.log('incorrect');
-
         store.lastQuestionIncorrect = true;
         // renderIncorrectAnswer();
       }
@@ -256,13 +257,12 @@ $(document).ready(function() {
 
       // // handles next button click
       
-      
     });
   }
+
   
   function generateAnswersList(answers) {
   //this function will populate the question template form with values from the
-  // store array. 
   }
   
   function renderQuestionText() {
@@ -278,7 +278,7 @@ $(document).ready(function() {
     // handleSubmitAnswerButton();
   }
 
-  $(buildQuizGame);
+  buildQuizGame();
 
 });
   
