@@ -97,6 +97,7 @@ $(document).ready(function() {
     </section>`);
   })();
 
+
   function handleStartGameClick() {
     $('.startbutton').on('click', function() {
       console.log('button was clicked');
@@ -120,6 +121,7 @@ $(document).ready(function() {
         <button class="submitanswerbutton" type="submit">Submit Answer</button>
         </fieldset>
       </form>
+      
 
     </section>`;
       $('main').html(question);
@@ -132,8 +134,6 @@ $(document).ready(function() {
           console.log(selected);
           if ($('input:checked').val() === store.questions[0].correctAnswer) {
             renderCorrectAnswer();
-          } else {
-            renderIncorrectAnswer();
           }
         });
       }
@@ -171,7 +171,7 @@ $(document).ready(function() {
 
     </section>`);
   }
-   
+  
 
   function generateAnswersList(answers) {
   //this function will populate the question template form with values from the
