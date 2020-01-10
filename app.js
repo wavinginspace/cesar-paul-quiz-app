@@ -30,7 +30,7 @@ $(document).ready(function() {
           'Perro',
           'Pajaro'
         ],
-        correctAnswer: 'Gato',
+        correctAnswer: 'gato',
         questionNumber: 1,
         score: 0
       },
@@ -43,7 +43,7 @@ $(document).ready(function() {
           'Police Station',
           'School'
         ],
-        correctAnswer: 'Library',
+        correctAnswer: 'library',
         questionNumber: 2,
         score: 0
       },
@@ -56,7 +56,7 @@ $(document).ready(function() {
           'Bass',
           'Guitar'
         ],
-        correctAnswer: 'Guitar',
+        correctAnswer: 'guitar',
         questionNumber: 3,
         score: 0
       },
@@ -101,33 +101,39 @@ $(document).ready(function() {
   function handleStartGameClick() {
     $('.startbutton').on('click', function() {
       console.log('button was clicked');
-      $('main').html(`<section>
+      let question = `<section>
       
-        <p> Question 1/5</p>
-        <p class="question">How do you say cat in Spanish?</p> 
-  
-        <form class="questionform">
-          <label for="correct">Gato</label>
-          <input type="radio" id="correct" name="choice" value="gato"> <br>
-          <label for="wrong1">Leon</label>
-          <input type="radio" id="wrong1" name="choice" value="leon"> <br>
-          <label for="wrong2">Raton</label>
-          <input type="radio" id="wrong2" name="choice" value="raton"> <br>
-          <label for="wrong3">Perro</label>
-          <input type="radio" id="wrong3" name="choice" value="perro"> <br>
-          <label for="wrong4">Pajaro</label>
-          <input type="radio" id="wrong4" name="choice" value="pajaro"> <br>
-          <button class="submitanswerbutton" type="submit">Submit Answer</button>
-        
-        </form>
-  
-      </section>`);
+      <p> Question 1/5</p>
+      <p class="question">How do you say cat in Spanish?</p> 
+
+      <form class="questionform">
+        <label for="correct">Gato</label>
+        <input type="radio" id="correct" name="choice" value="gato"> <br>
+        <label for="wrong1">Leon</label>
+        <input type="radio" id="wrong1" name="choice" value="leon"> <br>
+        <label for="wrong2">Raton</label>
+        <input type="radio" id="wrong2" name="choice" value="raton"> <br>
+        <label for="wrong3">Perro</label>
+        <input type="radio" id="wrong3" name="choice" value="perro"> <br>
+        <label for="wrong4">Pajaro</label>
+        <input type="radio" id="wrong4" name="choice" value="pajaro"> <br>
+        <button class="submitanswerbutton" type="submit">Submit Answer</button>
       
+      </form>
+
+    </section>`;
+      $('main').html(question);
+
       function handleSubmitAnswerButton() {
-        $('.submitanswerbutton').on('click', function(event) {
+        $('.questionform').on('submit', function(event) {
           event.preventDefault();
           console.log('I was submitted');
-          renderCorrectAnswer();
+          let selected = $('input[id=correct]');
+          console.log(selected);
+          if ($('input[id=correct]:checked').val() === store.questions[0].correctAnswer) {
+            renderCorrectAnswer();
+          }
+    
         });
       }
       handleSubmitAnswerButton();
