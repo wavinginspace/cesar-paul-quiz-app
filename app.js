@@ -101,28 +101,28 @@ $(document).ready(function() {
   let questionCounter = 0;
   let questionNumber = store.questions[questionCounter].questionNumber;
   let currentQuestion = store.questions[questionCounter];
-
   let questionHtml = `<section>
       
-      <p> Question ${questionNumber}/5</p>
+      <p class="questionNumber"> Question ${questionNumber}/5</p>
       <p class="question">${currentQuestion.question}</p> 
 
       <form class="questionform">
         <fieldset>
         <label for="correct">
-        <input type="radio" id="correct" name="choice" value="gato" tabindex="0" required>${currentQuestion.answers[0]}</label>
+        <input type="radio" id="correct" name="choice" value="gato"> ${currentQuestion.answers[0]}</label>
         <label for="wrong1">
-        <input type="radio" id="wrong1" name="choice" value="" tabindex="1" required> Leon</label>
+        <input type="radio" id="wrong1" name="choice" value="leon"> Leon</label>
         <label for="wrong2">
-        <input type="radio" id="wrong2" name="choice" value="raton" tabindex="2" required> Raton</label>
+        <input type="radio" id="wrong2" name="choice" value="raton"> Raton</label>
         <label for="wrong3">
-        <input type="radio" id="wrong3" name="choice" value="perro" tabindex="3" required> Perro</label>
+        <input type="radio" id="wrong3" name="choice" value="perro"> Perro</label>
         <label for="wrong4">
-        <input type="radio" id="wrong4" name="choice" value="pajaro" tabindex="4" required> Pajaro</label>
+        <input type="radio" id="wrong4" name="choice" value="pajaro"> Pajaro</label>
         <button class="submitanswerbutton" type="submit">Submit Answer</button>
         </fieldset>
       </form>`;
 
+            
   function renderQuestion() {
     $('main').html(questionHtml + '</section>');
   }
@@ -141,6 +141,8 @@ $(document).ready(function() {
           if ($('input:checked').val() === store.questions[0].correctAnswer) {
             renderCorrectAnswer();
           }
+          else 
+            renderIncorrectAnswer();
         });
       }
 
@@ -149,9 +151,9 @@ $(document).ready(function() {
         score++;
         $('main').html(questionHtml + 
     
-          `<p>You are correct!</p>
-          <p>Score: ${score}</p>
-          <button class="nextbutton">next</button>
+          `<p class="correctAnswer">You are Correct!</p>
+          <p class="correctScore">Score: ${score}</p>
+          <button class="nextbutton">Next</button>
     
         </section>`);
         handleNextClick();
@@ -161,8 +163,8 @@ $(document).ready(function() {
         // e.preventDefault();
         $('main').html(questionHtml + 
     
-          `<p>You are incorrect!</p>
-          <p>Score: 0</p>
+          `<p class="incorrectAnswer">You are incorrect!</p>
+          <p class="incorrectScore">Score: 0</p>
           <button class="nextbutton">next</button>
     
         </section>`);
@@ -180,10 +182,10 @@ $(document).ready(function() {
       handleSubmitAnswerButton();
     });
   }
+
   
   function generateAnswersList(answers) {
   //this function will populate the question template form with values from the
-  // store array. 
   }
   
   function renderQuestionText() {
@@ -203,7 +205,7 @@ $(document).ready(function() {
     testClick();
   }
 
-  $(buildQuizGame);
+  buildQuizGame();
 
 });
   

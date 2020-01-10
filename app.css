@@ -9,35 +9,82 @@
 
 body {
 	font-size: 24px;
+	background-color:burlywood;
 }
 
-header,
-section {
+/* header styles the title*/
+header {
 	display: flex;
 	justify-content: center;
+	margin-bottom: 50px;
 }
 
+/* best not to mess with this class it can edit the styling of the whole page */
 section {
-	align-items: center;
+	
 	flex-direction: column;
 }
 
-header {
-	margin-bottom: 100px;
-}
-
+/* styles the second heading that reads 'Do you want to play a game?' */
 section h2 {
 	display: block;
-}
+	text-align: center;
+	}
 
-button {
+/* startbutton styles the button on the first page that's labeled Yes!   */
+.startbutton {
 	display: block;
+	border-radius: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+/* nextbutton styles the next button when switching to another question */
+.nextbutton{
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 8px;
+	text-align: center;
+	}
+
+/* submitanswerbutton styles the Submit Answer button */
+.submitanswerbutton{
+	border-radius: 8px;
 }
 
-.choice {
-	display: inline-block;
-}
-
+/* label styles the different answer choices in the question*/
 label {
 	display: block;
+	}
+
+/* question styles the question text */
+.question{
+	text-align: center;
+}
+
+/* questionNumber styles the 'Question 1/5' text */
+.questionNumber{
+	text-align:center;
+	}
+
+/* correctAnswer is used to center the correct response and color it green.*/
+.correctAnswer{	
+	text-align:center;
+	color: forestgreen;
+}
+
+/* correctScore is used to center the the score number. */
+.correctScore{
+	text-align: center;
+}
+
+/* incorrectAnswer styles the text that appears when an incorrect answer is chosen */
+.incorrectAnswer{
+text-align: center;
+color: red;
+}
+
+/* incorrectScore styles the  */
+.incorrectScore{
+	text-align: center;
 }
