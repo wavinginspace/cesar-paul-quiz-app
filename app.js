@@ -30,9 +30,8 @@ $(document).ready(function() {
           'Perro',
           'Pajaro'
         ],
-        correctAnswer: 'gato',
+        correctAnswer: 'Gato',
         questionNumber: 1,
-        score: 0
       },
       {
         question: 'What is a Biblioteca?',
@@ -43,9 +42,8 @@ $(document).ready(function() {
           'Police Station',
           'School'
         ],
-        correctAnswer: 'library',
+        correctAnswer: 'Library',
         questionNumber: 2,
-        score: 0
       },
       {
         question: 'Pablo toca la guitara. What instrument does Pablo play?',
@@ -56,9 +54,8 @@ $(document).ready(function() {
           'Bass',
           'Guitar'
         ],
-        correctAnswer: 'guitar',
+        correctAnswer: 'Guitar',
         questionNumber: 3,
-        score: 0
       },
       {
         question: 'What is the capital of Mexico?',
@@ -71,7 +68,6 @@ $(document).ready(function() {
         ],
         correctAnswer: 'Mexico City',
         questionNumber: 4,
-        score: 0
       },
       {
         question: 'When is Mexican Independence Day?',
@@ -84,101 +80,183 @@ $(document).ready(function() {
         ],
         correctAnswer: 'September 16th',
         questionNumber: 5,
-        score: 0
+        
       }
-    ], 
+    ],
+    score: 0,
+    questionCounter: 0,
+    quizStarted: false,
+    lastQuestionIncorrect: null
   };
 
-  (function renderWelcomePage() {
-  //this function will render the welcome page view
-    $('main').html(`<section>
+  function render() {
+    if (store.quizStarted === false) {
+      $('main').html(`<section>
       <h2>Do you want to play a game?</h2>
         <button class="startbutton">Yes!</button>
     </section>`);
-  })();
+    } else if (store.quizStarted === true) {
+      $('main').html(generateQuestionHtml());
+    }
 
-  let score = 0;
-  let questionCounter = 0;
-  let questionNumber = store.questions[questionCounter].questionNumber;
-  let currentQuestion = store.questions[questionCounter];
+    if (store.lastQuestionIncorrect === false) {
+      let correctAnswerHtml = generateQuestionHtml();
+      $('main').html(correctAnswerHtml + 
+    
+          `<p>You are correct!</p>
+          <p>Score: ${store.score}</p>
+          <button class="nextbutton">next</button>
+    
+        </section>`);
+    } else if (store.lastQuestionIncorrect === true) {
+      let correctAnswerHtml = generateQuestionHtml();
 
-  let questionHtml = `<section>
+      $('main').html(correctAnswerHtml + 
+    
+          `<p>You are incorrect!</p>
+          <p>Score: ${store.score}</p>
+          <button class="nextbutton">next</button>
+    
+        </section>`);
+    }
+  }
+
+  function handleNextClick() {
+    $('body').on('click', '.nextbutton', function(event) {
+      // debugger;
+      store.lastQuestionIncorrect = null;
+      store.questionCounter += 1;
+
+      event.preventDefault();
+      console.log('next button clicked');
+      // generateQuestionHtml();
+      render();
+
+    });
+  }
+
+  // function renderWelcomePage() {
+  // //this function will render the welcome page view
+    
+  // }
+
+  // let score = 0;
+  // let questionCounter = 0;
+
+  // let questionHtml = `<section>
       
-      <p> Question ${questionNumber}/5</p>
-      <p class="question">${currentQuestion.question}</p> 
+  //     <p> Question ${questionNumber}/5</p>
+  //     <p class="question">${currentQuestion.question}</p> 
 
-      <form class="questionform">
-        <fieldset>
-        <label for="correct">
-        <input type="radio" id="correct" name="choice" value="gato" tabindex="0" required>${currentQuestion.answers[0]}</label>
-        <label for="wrong1">
-        <input type="radio" id="wrong1" name="choice" value="" tabindex="1" required>${currentQuestion.answers[1]}</label>
-        <label for="wrong2">
-        <input type="radio" id="wrong2" name="choice" value="raton" tabindex="2" required>${currentQuestion.answers[2]}</label>
-        <label for="wrong3">
-        <input type="radio" id="wrong3" name="choice" value="perro" tabindex="3" required>${currentQuestion.answers[3]}</label>
-        <label for="wrong4">
-        <input type="radio" id="wrong4" name="choice" value="pajaro" tabindex="4" required>${currentQuestion.answers[4]}</label>
-        <button class="submitanswerbutton" type="submit">Submit Answer</button>
-        </fieldset>
-      </form>`;
+  //     <form class="questionform">
+  //       <fieldset>
+  //       <label for="correct">
+  //       <input type="radio" id="correct" name="choice" value="gato" tabindex="0" required>${currentQuestion.answers[0]}</label>
+  //       <label for="wrong1">
+  //       <input type="radio" id="wrong1" name="choice" value="" tabindex="1" required>${currentQuestion.answers[1]}</label>
+  //       <label for="wrong2">
+  //       <input type="radio" id="wrong2" name="choice" value="raton" tabindex="2" required>${currentQuestion.answers[2]}</label>
+  //       <label for="wrong3">
+  //       <input type="radio" id="wrong3" name="choice" value="perro" tabindex="3" required>${currentQuestion.answers[3]}</label>
+  //       <label for="wrong4">
+  //       <input type="radio" id="wrong4" name="choice" value="pajaro" tabindex="4" required>${currentQuestion.answers[4]}</label>
+  //       <button class="submitanswerbutton" type="submit">Submit Answer</button>
+  //       </fieldset>
+  //     </form>`;
 
-  function renderQuestion() {
-    $('main').html(questionHtml + '</section>');
+  function generateQuestionHtml() {
+    let questionNumber = store.questions[store.questionCounter].questionNumber;
+    let currentQuestion = store.questions[store.questionCounter];
+    let questionHtml = `<section>
+      
+    <p> Question ${questionNumber}/5</p>
+    <p class="question">${currentQuestion.question}</p> 
+
+    <form class="questionform">
+      <fieldset>
+      <label for="correct">
+      <input type="radio" id="correct" name="choice" value="${currentQuestion.answers[0]}" tabindex="0" required>${currentQuestion.answers[0]}</label>
+      <label for="wrong1">
+      <input type="radio" id="wrong1" name="choice" value="${currentQuestion.answers[1]}" tabindex="1" required>${currentQuestion.answers[1]}</label>
+      <label for="wrong2">
+      <input type="radio" id="wrong2" name="choice" value="${currentQuestion.answers[2]}" tabindex="2" required>${currentQuestion.answers[2]}</label>
+      <label for="wrong3">
+      <input type="radio" id="wrong3" name="choice" value="${currentQuestion.answers[3]}" tabindex="3" required>${currentQuestion.answers[3]}</label>
+      <label for="wrong4">
+      <input type="radio" id="wrong4" name="choice" value="${currentQuestion.answers[4]}" tabindex="4" required>${currentQuestion.answers[4]}</label>
+      <button class="submitanswerbutton" type="submit">Submit Answer</button>
+      </fieldset>
+    </form>`;
+    return questionHtml;
   }
 
   function handleStartGameClick() {
-    $('.startbutton').on('click', function() {
-      renderQuestion();
+    $('main').on('click', '.startbutton', function() {
+      store.quizStarted = true;
+      render();
+      // renderQuestion();
       console.log('button was clicked');
+    });
+  }
 
-      function handleSubmitAnswerButton() {
-        $('.questionform').on('submit', function(event) {
-          event.preventDefault();
-          console.log('I was submitted');
-          let selected = $('input[id=correct]');
-          console.log(selected);
-          if ($('input:checked').val() === store.questions[0].correctAnswer) {
-            renderCorrectAnswer();
-          } else {
-            renderIncorrectAnswer();
-          }
-        });
+  function handleSubmitAnswerButton() {
+    // let questionNumber = 1;
+    $('main').on('submit', '.questionform', function(event) {
+      // debugger;
+
+      event.preventDefault();
+      console.log('I was submitted');
+      let selected = $('input[id=correct]');
+      console.log(selected);
+      console.log($('input:checked').val(), store.questions[store.questionCounter].correctAnswer);
+      if ($('input:checked').val() === store.questions[store.questionCounter].correctAnswer) {
+        console.log('correct');
+        store.score++;
+        store.lastQuestionIncorrect = false;
+        // renderCorrectAnswer();
+      } else {
+        console.log('incorrect');
+
+        store.lastQuestionIncorrect = true;
+        // renderIncorrectAnswer();
       }
+      render();
 
-      function renderCorrectAnswer() {
-        // e.preventDefault();
-        score++;
-        $('main').html(questionHtml + 
-    
-          `<p>You are correct!</p>
-          <p>Score: ${score}</p>
-          <button class="nextbutton">next</button>
-    
-        </section>`);
-        handleNextClick();
-      }
+      // function renderQuestion() {
+      //   let questionHtml = generateQuestionHtml();
+      //   $('main').html(questionHtml + '</section>');
+      // }
 
-      function renderIncorrectAnswer() {
-        // e.preventDefault();
-        $('main').html(questionHtml + 
-    
-          `<p>You are incorrect!</p>
-          <p>Score: 0</p>
-          <button class="nextbutton">next</button>
-    
-        </section>`);
-        handleNextClick();
-      }
+      // function renderCorrectAnswer() {
+      //   // e.preventDefault();
+      //   let correctAnswerHtml = generateQuestionHtml();
 
-      function handleNextClick() {
-        $('.nextbutton').on('click', function() {
-          console.log('next button clicked');
-          renderQuestion();
-        });
-      }
+      //   $('main').html(correctAnswerHtml + 
+    
+      //     `<p>You are correct!</p>
+      //     <p>Score: ${score}</p>
+      //     <button class="nextbutton">next</button>
+    
+      //   </section>`);
+      //   handleNextClick();
+      // }
 
-      handleSubmitAnswerButton();
+      // function renderIncorrectAnswer() {
+      //   // e.preventDefault();
+      //   let incorrectAnswerHtml = generateQuestionHtml();
+      //   $('main').html(incorrectAnswerHtml + 
+    
+      //     `<p>You are incorrect!</p>
+      //     <p>Score: ${score}</p>
+      //     <button class="nextbutton">next</button>
+    
+      //   </section>`);
+      //   handleNextClick();
+      // }
+
+      // // handles next button click
+      
+      
     });
   }
   
@@ -191,17 +269,13 @@ $(document).ready(function() {
   //this function will render the question text, pulling values from the store array
   }
 
-  function testClick() {
-    $('.questionform').on('click', '.submitbutton', function(event) {
-      event.preventDefault();
-      console.log('test');
-    });
-  }
-
   function buildQuizGame() {
+    render();
     handleStartGameClick();
+    handleSubmitAnswerButton();
+    handleNextClick();
+
     // handleSubmitAnswerButton();
-    testClick();
   }
 
   $(buildQuizGame);
