@@ -33,3 +33,11 @@ section h2 {
 button {
 	display: block;
 }
+
+.choice {
+	display: inline-block;
+}
+
+label {
+	display: block;
+}

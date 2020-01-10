@@ -107,19 +107,21 @@ $(document).ready(function() {
       <p class="question">How do you say cat in Spanish?</p> 
 
       <form class="questionform">
-        <label for="correct">Gato</label>
-        <input type="radio" id="correct" name="choice" value="gato"> <br>
-        <label for="wrong1">Leon</label>
-        <input type="radio" id="wrong1" name="choice" value="leon"> <br>
-        <label for="wrong2">Raton</label>
-        <input type="radio" id="wrong2" name="choice" value="raton"> <br>
-        <label for="wrong3">Perro</label>
-        <input type="radio" id="wrong3" name="choice" value="perro"> <br>
-        <label for="wrong4">Pajaro</label>
-        <input type="radio" id="wrong4" name="choice" value="pajaro"> <br>
+        <fieldset>
+        <label for="correct">
+        <input type="radio" id="correct" name="choice" value="gato"> Gato</label>
+        <label for="wrong1">
+        <input type="radio" id="wrong1" name="choice" value="leon"> Leon</label>
+        <label for="wrong2">
+        <input type="radio" id="wrong2" name="choice" value="raton"> Raton</label>
+        <label for="wrong3">
+        <input type="radio" id="wrong3" name="choice" value="perro"> Perro</label>
+        <label for="wrong4">
+        <input type="radio" id="wrong4" name="choice" value="pajaro"> Pajaro</label>
         <button class="submitanswerbutton" type="submit">Submit Answer</button>
-      
+        </fieldset>
       </form>
+      
 
     </section>`;
       $('main').html(question);
@@ -147,18 +149,20 @@ $(document).ready(function() {
 
       <p>How do you say cat in Spanish?</p> 
 
-      <form action="">
-        <label for="correct">Gato</label>
-        <input type="radio" id="correct" name="choice" value="gato"> <br>
-        <label for="wrong1">Leon</label>
-        <input type="radio" id="wrong1" name="choice" value="leon"> <br>
-        <label for="wrong2">Raton</label>
-        <input type="radio" id="wrong2" name="choice" value="raton"> <br>
-        <label for="wrong3">Perro</label>
-        <input type="radio" id="wrong3" name="choice" value="perro"> <br>
-        <label for="wrong4">Pajaro</label>
-        <input type="radio" id="wrong4" name="choice" value="pajaro"> <br>
-        <button type="submit">Submit Answer</button>
+      <form class="questionform">
+        <fieldset>
+        <label for="correct">
+        <input type="radio" id="correct" name="choice" value="gato"> Gato</label>
+        <label for="wrong1">
+        <input type="radio" id="wrong1" name="choice" value="leon"> Leon</label>
+        <label for="wrong2">
+        <input type="radio" id="wrong2" name="choice" value="raton"> Raton</label>
+        <label for="wrong3">
+        <input type="radio" id="wrong3" name="choice" value="perro"> Perro</label>
+        <label for="wrong4">
+        <input type="radio" id="wrong4" name="choice" value="pajaro"> Pajaro</label>
+        <button class="submitanswerbutton" type="submit">Submit Answer</button>
+        </fieldset>
       </form>
 
       <p>You are correct!</p>
