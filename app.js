@@ -110,15 +110,15 @@ $(document).ready(function() {
       <form class="questionform">
         <fieldset>
         <label for="correct">
-        <input type="radio" id="correct" name="choice" value="gato">${currentQuestion.answers[0]}</label>
+        <input type="radio" id="correct" name="choice" value="gato" tabindex="0" required>${currentQuestion.answers[0]}</label>
         <label for="wrong1">
-        <input type="radio" id="wrong1" name="choice" value="leon"> Leon</label>
+        <input type="radio" id="wrong1" name="choice" value="" tabindex="1" required> Leon</label>
         <label for="wrong2">
-        <input type="radio" id="wrong2" name="choice" value="raton"> Raton</label>
+        <input type="radio" id="wrong2" name="choice" value="raton" tabindex="2" required> Raton</label>
         <label for="wrong3">
-        <input type="radio" id="wrong3" name="choice" value="perro"> Perro</label>
+        <input type="radio" id="wrong3" name="choice" value="perro" tabindex="3" required> Perro</label>
         <label for="wrong4">
-        <input type="radio" id="wrong4" name="choice" value="pajaro"> Pajaro</label>
+        <input type="radio" id="wrong4" name="choice" value="pajaro" tabindex="4" required> Pajaro</label>
         <button class="submitanswerbutton" type="submit">Submit Answer</button>
         </fieldset>
       </form>`;
@@ -207,7 +207,7 @@ $(document).ready(function() {
     testClick();
   }
 
-  buildQuizGame();
+  $(buildQuizGame);
 
 });
   
