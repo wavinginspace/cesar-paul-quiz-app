@@ -122,14 +122,15 @@ $(document).ready(function() {
         </form>
   
       </section>`);
-    });
-  }
-
-  function handleSubmitAnswerButton() {
-    $('.submitanswerbutton').on('click', function(event) {
-      event.preventDefault();
-      console.log('I was submitted');
-      renderCorrectAnswer();
+      
+      function handleSubmitAnswerButton() {
+        $('.submitanswerbutton').on('click', function(event) {
+          event.preventDefault();
+          console.log('I was submitted');
+          renderCorrectAnswer();
+        });
+      }
+      handleSubmitAnswerButton();
     });
   }
  
@@ -163,14 +164,14 @@ $(document).ready(function() {
   }
    
 
-  // function generateAnswersList(answers) {
-  // //this function will populate the question template form with values from the
-  // // store array. 
-  // }
+  function generateAnswersList(answers) {
+  //this function will populate the question template form with values from the
+  // store array. 
+  }
   
-  // function renderQuestionText() {
-  // //this function will render the question text, pulling values from the store array
-  // }
+  function renderQuestionText() {
+  //this function will render the question text, pulling values from the store array
+  }
 
   function testClick() {
     $('.questionform').on('click', '.submitbutton', function(event) {
@@ -181,7 +182,7 @@ $(document).ready(function() {
 
   function buildQuizGame() {
     handleStartGameClick();
-    handleSubmitAnswerButton();
+    // handleSubmitAnswerButton();
     testClick();
   }
 
