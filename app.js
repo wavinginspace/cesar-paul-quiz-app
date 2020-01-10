@@ -97,12 +97,20 @@ $(document).ready(function() {
     </section>`);
   })();
 
+<<<<<<< HEAD
+
+  function handleStartGameClick() {
+    $('.startbutton').on('click', function() {
+      console.log('button was clicked');
+      let question = `<section>
+=======
   let score = 0;
   let questionCounter = 0;
   let questionNumber = store.questions[questionCounter].questionNumber;
   let currentQuestion = store.questions[questionCounter];
 
   let questionHtml = `<section>
+>>>>>>> 9565e79fcb92e5be7491f2cae7a07dc00d3265eb
       
       <p> Question ${questionNumber}/5</p>
       <p class="question">${currentQuestion.question}</p> 
@@ -121,11 +129,16 @@ $(document).ready(function() {
         <input type="radio" id="wrong4" name="choice" value="pajaro" tabindex="4" required> Pajaro</label>
         <button class="submitanswerbutton" type="submit">Submit Answer</button>
         </fieldset>
+<<<<<<< HEAD
+      </form>
+      
+=======
       </form>`;
 
   function renderQuestion() {
     $('main').html(questionHtml + '</section>');
   }
+>>>>>>> 9565e79fcb92e5be7491f2cae7a07dc00d3265eb
 
   function handleStartGameClick() {
     $('.startbutton').on('click', function() {
@@ -140,8 +153,6 @@ $(document).ready(function() {
           console.log(selected);
           if ($('input:checked').val() === store.questions[0].correctAnswer) {
             renderCorrectAnswer();
-          } else {
-            renderIncorrectAnswer();
           }
         });
       }
@@ -182,8 +193,12 @@ $(document).ready(function() {
       handleSubmitAnswerButton();
     });
   }
+<<<<<<< HEAD
+  
+=======
  
 
+>>>>>>> 9565e79fcb92e5be7491f2cae7a07dc00d3265eb
 
   function generateAnswersList(answers) {
   //this function will populate the question template form with values from the
