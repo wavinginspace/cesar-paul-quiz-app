@@ -22,7 +22,7 @@ $(document).ready(function() {
   // 5 or more questions are required
     questions: [
       {
-        question: 'How do you say Cat in Spanish ',
+        question: 'How do you say "cat" in Spanish?',
         answers: [
           'Gato',
           'Leon',
@@ -97,18 +97,20 @@ $(document).ready(function() {
     </section>`);
   })();
 
-  function handleStartGameClick() {
-    $('.startbutton').on('click', function() {
-      console.log('button was clicked');
-      let question = `<section>
+  let score = 0;
+  let questionCounter = 0;
+  let questionNumber = store.questions[questionCounter].questionNumber;
+  let currentQuestion = store.questions[questionCounter];
+
+  let questionHtml = `<section>
       
-      <p> Question 1/5</p>
-      <p class="question">How do you say cat in Spanish?</p> 
+      <p> Question ${questionNumber}/5</p>
+      <p class="question">${currentQuestion.question}</p> 
 
       <form class="questionform">
         <fieldset>
         <label for="correct">
-        <input type="radio" id="correct" name="choice" value="gato"> Gato</label>
+        <input type="radio" id="correct" name="choice" value="gato">${currentQuestion.answers[0]}</label>
         <label for="wrong1">
         <input type="radio" id="wrong1" name="choice" value="leon"> Leon</label>
         <label for="wrong2">
@@ -119,10 +121,16 @@ $(document).ready(function() {
         <input type="radio" id="wrong4" name="choice" value="pajaro"> Pajaro</label>
         <button class="submitanswerbutton" type="submit">Submit Answer</button>
         </fieldset>
-      </form>
+      </form>`;
 
-    </section>`;
-      $('main').html(question);
+  function renderQuestion() {
+    $('main').html(questionHtml + '</section>');
+  }
+
+  function handleStartGameClick() {
+    $('.startbutton').on('click', function() {
+      renderQuestion();
+      console.log('button was clicked');
 
       function handleSubmitAnswerButton() {
         $('.questionform').on('submit', function(event) {
@@ -137,41 +145,45 @@ $(document).ready(function() {
           }
         });
       }
+
+      function renderCorrectAnswer() {
+        // e.preventDefault();
+        score++;
+        $('main').html(questionHtml + 
+    
+          `<p>You are correct!</p>
+          <p>Score: ${score}</p>
+          <button class="nextbutton">next</button>
+    
+        </section>`);
+        handleNextClick();
+      }
+
+      function renderIncorrectAnswer() {
+        // e.preventDefault();
+        $('main').html(questionHtml + 
+    
+          `<p>You are incorrect!</p>
+          <p>Score: 0</p>
+          <button class="nextbutton">next</button>
+    
+        </section>`);
+        handleNextClick();
+      }
+
+      function handleNextClick() {
+        $('.nextbutton').on('click', function() {
+          questionNumber++;
+          console.log('next button clicked');
+          renderQuestion();
+        });
+      }
+
       handleSubmitAnswerButton();
     });
   }
  
-  function renderCorrectAnswer() {
-    // e.preventDefault();
-    $('main').html(`<section>
-      
-      <p> Question 1/5</p>
 
-      <p>How do you say cat in Spanish?</p> 
-
-      <form class="questionform">
-        <fieldset>
-        <label for="correct">
-        <input type="radio" id="correct" name="choice" value="gato"> Gato</label>
-        <label for="wrong1">
-        <input type="radio" id="wrong1" name="choice" value="leon"> Leon</label>
-        <label for="wrong2">
-        <input type="radio" id="wrong2" name="choice" value="raton"> Raton</label>
-        <label for="wrong3">
-        <input type="radio" id="wrong3" name="choice" value="perro"> Perro</label>
-        <label for="wrong4">
-        <input type="radio" id="wrong4" name="choice" value="pajaro"> Pajaro</label>
-        <button class="submitanswerbutton" type="submit">Submit Answer</button>
-        </fieldset>
-      </form>
-
-      <p>You are correct!</p>
-      <p>Score: 0</p>
-      <button>next</button>
-
-    </section>`);
-  }
-   
 
   function generateAnswersList(answers) {
   //this function will populate the question template form with values from the
