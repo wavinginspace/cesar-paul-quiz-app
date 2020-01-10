@@ -140,6 +140,8 @@ $(document).ready(function() {
           console.log(selected);
           if ($('input:checked').val() === store.questions[0].correctAnswer) {
             renderCorrectAnswer();
+          } else {
+            renderIncorrectAnswer();
           }
         });
       }
@@ -171,7 +173,6 @@ $(document).ready(function() {
 
       function handleNextClick() {
         $('.nextbutton').on('click', function() {
-          questionCounter++;
           console.log('next button clicked');
           renderQuestion();
         });
@@ -211,17 +212,3 @@ $(document).ready(function() {
 // 1. The starting screen should have a button that users can click to start the quiz.
 
 
-
-
-/**
- *
- * Your app should include a render() function, that regenerates
- * the view each time the store is updated. See your course
- * material, consult your instructor, and reference the slides
- * for more details.
- *
- * NO additional HTML elements should be added to the index.html file.
- *
- * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
- *
- */
