@@ -15,8 +15,6 @@
 9. Users should be able to start a new quiz. */
 
 
-
-
 $(document).ready(function() {
 
 
