@@ -112,13 +112,13 @@ $(document).ready(function() {
         <label for="correct">
         <input type="radio" id="correct" name="choice" value="gato" tabindex="0" required>${currentQuestion.answers[0]}</label>
         <label for="wrong1">
-        <input type="radio" id="wrong1" name="choice" value="" tabindex="1" required> Leon</label>
+        <input type="radio" id="wrong1" name="choice" value="" tabindex="1" required>${currentQuestion.answers[1]}</label>
         <label for="wrong2">
-        <input type="radio" id="wrong2" name="choice" value="raton" tabindex="2" required> Raton</label>
+        <input type="radio" id="wrong2" name="choice" value="raton" tabindex="2" required>${currentQuestion.answers[2]}</label>
         <label for="wrong3">
-        <input type="radio" id="wrong3" name="choice" value="perro" tabindex="3" required> Perro</label>
+        <input type="radio" id="wrong3" name="choice" value="perro" tabindex="3" required>${currentQuestion.answers[3]}</label>
         <label for="wrong4">
-        <input type="radio" id="wrong4" name="choice" value="pajaro" tabindex="4" required> Pajaro</label>
+        <input type="radio" id="wrong4" name="choice" value="pajaro" tabindex="4" required>${currentQuestion.answers[4]}</label>
         <button class="submitanswerbutton" type="submit">Submit Answer</button>
         </fieldset>
       </form>`;
@@ -171,7 +171,7 @@ $(document).ready(function() {
 
       function handleNextClick() {
         $('.nextbutton').on('click', function() {
-          questionNumber++;
+          questionCounter++;
           console.log('next button clicked');
           renderQuestion();
         });
